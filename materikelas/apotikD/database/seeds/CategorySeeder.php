@@ -16,12 +16,6 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             'category_name' => 'Alat Kesehatan'
         ]);
-        DB::table('categories')->insert([
-            'category_name' => 'Analgesik Narkotik'
-        ]);
-        DB::table('categories')->insert([
-            'category_name' => 'Analgesik Non Narkotik'
-        ]);
 
     }
 }
