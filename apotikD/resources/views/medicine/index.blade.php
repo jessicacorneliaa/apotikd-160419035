@@ -22,9 +22,7 @@
       </tr>
     </thead>
     <tbody>
-      <!-- tiap data $result menjadi $d -->
-      <!-- @foreach($result as $d) -->
-      @foreach($data as $d)
+    @foreach($data as $d)
       <tr>
         <td>{{$d->generic_name}}</td>
         <td>{{$d->form}}</td>
@@ -35,6 +33,5 @@
     </tbody>
   </table>
 </div>
-
 </body>
 </html>

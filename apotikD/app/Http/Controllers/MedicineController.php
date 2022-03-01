@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Medicine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -53,10 +52,10 @@ class MedicineController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Medicine  $medicine
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Medicine $medicine)
+    public function show($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class MedicineController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Medicine  $medicine
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Medicine $medicine)
+    public function edit($id)
     {
         //
     }
@@ -76,10 +75,10 @@ class MedicineController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Medicine  $medicine
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Medicine $medicine)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -87,10 +86,10 @@ class MedicineController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Medicine  $medicine
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Medicine $medicine)
+    public function destroy($id)
     {
         //
     }
