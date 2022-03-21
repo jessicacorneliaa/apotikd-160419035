@@ -13,6 +13,7 @@
       <tr>
         <th>Kategori</th>
         <th>Nama Obat</th>
+        <th>Form</th>
         <th>Harga</th>
       </tr>
     </thead>
@@ -20,8 +21,9 @@
       @foreach($result as $c)
       <tr>
         <td>{{$c->category_name}}</td>  
-        <td>{{$c->generic_name}}</td>
-        <td>Rp {{$c->max}}</td>
+        <td>{{$c->generic_name}} </td>
+        <td>{{$c->form}}</td>
+        <td>Rp {{$c->price}}</td>
       </tr>
       @endforeach
     </tbody>

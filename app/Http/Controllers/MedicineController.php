@@ -250,11 +250,31 @@ class MedicineController extends Controller
                 ->groupBy('categories.category_name')
                 ->orderBy('max','desc')
                 ->get();
+        
+                // SELECT b.generic_name, b.form, b.price
+                // FROM (
+                //   SELECT generic_name, form,  MAX(price) AS maxprice
+                //   FROM medicines 
+                //   GROUP BY category_id
+                // ) AS a
+                // INNER JOIN medicines AS b ON 
+                //   a.maxprice = b.price;
 
-        $result= Medicine:: select('categories.category_name', 'medicines.generic_name', DB::raw('max(medicines.price) as max'))
+
+        $result= Medicine:: select('categories.category_name', 'medicines.generic_name', 'medicines.form',DB::raw('max(medicines.price) as max'))
                 ->join('categories', 'medicines.category_id', '=', 'categories.id')
                 ->groupBy('categories.category_name')
                 ->orderBy('max','desc')
+                ->get();
+
+        $result= DB::query()->fromSub(function($query){
+                    $query->select('categories.category_name', DB::raw('MAX(medicines.price) AS maxprice'))
+                            ->from('medicines')
+                            ->join('categories','categories.id','=','medicines.category_id')
+                            ->groupBy('category_id');
+                }, 'a')
+                ->select('a.category_name','medicines.generic_name', 'medicines.form', 'medicines.price')
+                ->join('medicines', 'a.maxprice', '=', 'medicines.price')
                 ->get();
         return view("medicine.highest_drug_price", compact('result'));
     }
