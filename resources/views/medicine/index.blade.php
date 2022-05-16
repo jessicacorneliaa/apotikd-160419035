@@ -9,6 +9,11 @@
   <!-- END PAGE HEADER-->
   <!-- <div class="container "> -->
     <br>
+@if (session('status'))
+  <div class="alert alert-success">
+      {{session('status')}}
+  </div>
+@endif
   <table class="table">
     <thead>
       <tr>
@@ -18,6 +23,7 @@
         <th>Kategori</th>
         <th>Foto</th>
         <th>Harga</th>
+        <th><a href="{{ route('medicines.create') }}" class="btn btn-primary" >Tambah</a></th>
       </tr>
     </thead>
     <tbody>

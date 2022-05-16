@@ -37,7 +37,8 @@ class MedicineController extends Controller
      */
     public function create()
     {
-        //
+        $result= Category::all();
+        return view('medicine.create', compact('result'));
     }
 
     /**
@@ -48,7 +49,41 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          // dd($request)
+        //   dd($request->input('faskes'));
+        
+          $data= new Medicine();
+          $data->generic_name= $request->get('generic_name');
+          $data->form= $request->get('form');
+          $data->restriction_formula= $request->get('restriction_formula');
+          $data->price= $request->get('price');
+          $data->description= $request->get('description');
+          if($request->input('faskes1')!==null){
+            $data->faskes1= 1;
+          }
+          else{
+            $data->faskes1= 0;
+          }
+          
+          if($request->input('faskes2')!==null){
+            $data->faskes2= 1;
+          }
+          else{
+            $data->faskes2= 0;
+          }
+          
+          if($request->input('faskes3')!==null){
+            $data->faskes3= 1;
+          }
+          else{
+            $data->faskes3= 0;
+          }
+
+          $data->category_id= $request->get('category_id');
+          
+          $data->save();
+          // redirect()->action('MedicineController@index');
+          return redirect()->route('medicines.index')->with('status', 'Data baru berhasil tersimpan');
     }
 
     /**

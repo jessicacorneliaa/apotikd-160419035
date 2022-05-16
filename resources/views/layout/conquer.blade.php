@@ -41,6 +41,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END THEME STYLES -->
 <link rel="shortcut icon" href="favicon.ico"/>
 </head>
+@yield('javascript')
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="page-header-fixed">
@@ -155,6 +156,18 @@ License: You must have a valid license purchased only from themeforest(the above
 				<a href="{{ url('coba2') }}">
 				<i class="fa fa-dollar"></i>
 				<span class="title">Highest Drug Price</span>
+				</a>
+			</li>
+            <li class="start ">
+				<a href="{{ url('transactions') }}">
+				<i class="fa fa-shopping-cart"></i>
+				<span class="title">Transaction</span>
+				</a>
+			</li>
+            <li class="start ">
+				<a href="{{ url('suppliers') }}">
+				<i class="fas fa-box"></i>
+				<span class="title">Supplier</span>
 				</a>
 			</li>
 		</ul>
