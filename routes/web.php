@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MedicineController;
+use App\Supplier;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +35,7 @@ Route::get('transactions/showDataAjax2/{id}','TransactionController@showAjax2')-
 
 // Supplier
 Route::resource('suppliers','SupplierController');
+Route::post('suppliers/getEditForm', 'SupplierController@getEditForm')->name('suppliers.getEditForm');
+Route::post('suppliers/getEditForm2', 'SupplierController@getEditForm2')->name('suppliers.getEditForm2');
+Route::post('suppliers/saveData', 'SupplierController@saveData')->name('suppliers.saveData');
+Route::post('suppliers/deleteData', 'SupplierController@deleteData')->name('suppliers.deleteData');

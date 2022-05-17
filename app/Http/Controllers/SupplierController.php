@@ -98,4 +98,49 @@ class SupplierController extends Controller
         $supplier->delete();
         return redirect()->route('suppliers.index')->with('status', 'Data berhasil dihapus');
     }
+
+    public function getEditForm(Request $request)
+    {
+        $id= $request->get('id');
+        $data= Supplier::find($id);
+        return response()->json(array(
+            'status'=>'OK',
+            'msg'=>view('supplier.getEditForm', compact('data'))->render()
+        ), 200);
+    }
+
+    // edit data dengan modal tanpa refresh
+    public function getEditForm2(Request $request)
+    {
+        $id= $request->get('id');
+        $data= Supplier::find($id);
+        return response()->json(array(
+            'status'=>'OK',
+            'msg'=>view('supplier.getEditForm2', compact('data'))->render()
+        ), 200);
+    }
+
+    public function deleteData(Request $request)
+    {
+        $id= $request->get('id');
+        $data= Supplier::find($id);
+        $data->delete();
+        return response()->json(array(
+            'status'=>'OK',
+            'msg'=>'Berhasil menghapus data '.$data->name
+        ), 200);
+    }
+
+    public function saveData(Request $request)
+    {
+        $id= $request->get('id');
+        $data= Supplier::find($id);
+        $data->name= $request->get('name');
+        $data->address= $request->get('address');
+        $data->save();
+        return response()->json(array(
+            'status'=>'OK',
+            'msg'=>'Data '.$data->name.' berhasil diubah'
+        ), 200);
+    }
 }
