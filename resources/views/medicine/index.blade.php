@@ -37,6 +37,14 @@
           <img src="{{asset('images/'.$d->image)}}" height="100px">
         </td>
         <td>Rp {{$d->price}}</td>
+        <th>
+          <a href="{{ url('medicines/'.$d->id.'/edit')}}" class="btn btn-warning" >Edit</a>
+          <form method="POST" action="{{url('medicines/'.$d->id)}}">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value="Hapus" class="btn btn-danger" onclick="if(!confirm('Apakah Anda yakin menghapus data {{$d->generic_name}} ?')) return false;">
+          </form>
+        </th>
       </tr>
       @endforeach
     </tbody>

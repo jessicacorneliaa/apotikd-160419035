@@ -104,9 +104,12 @@ class MedicineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Medicine $medicine)
     {
-        //
+        $data= $medicine;
+        $kategori= Category::find($medicine->category_id);
+        $result= Category::all();
+        return view('medicine.edit', compact('data', 'result', 'kategori'));
     }
 
     /**
@@ -116,9 +119,15 @@ class MedicineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Medicine $medicine)
     {
-        //
+        $medicine->generic_name= $request->get('generic_name');
+        $medicine->form= $request->get('form');
+        $medicine->restriction_formula= $request->get('restriction_formula');
+        $medicine->price= $request->get('price');
+        $medicine->description= $request->get('description');
+        $medicine->save();
+        return redirect()->route('medicines.index')->with('status', 'Data berhasil diubah');
     }
 
     /**
@@ -127,9 +136,10 @@ class MedicineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Medicine $medicine)
     {
-        //
+        $medicine->delete();
+        return redirect()->route('medicines.index')->with('status', 'Data berhasil dihapus');
     }
 
     public function coba1(){

@@ -27,8 +27,12 @@
         <td>{{$d->name}}</td>
         <td>{{$d->address}}</td> 
         <th>
-            <a href="" class="btn btn-warning" >Edit</a>
-            <a href="" class="btn btn-danger" >Hapus</a>
+          <a href="{{ url('suppliers/'.$d->id.'/edit')}}" class="btn btn-warning" >Edit</a>
+          <form method="POST" action="{{url('suppliers/'.$d->id)}}">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value="Hapus" class="btn btn-danger" onclick="if(!confirm('Apakah Anda yakin menghapus data {{$d->name}}')) return false;">
+          </form>
         </th>
       </tr>
       @endforeach
