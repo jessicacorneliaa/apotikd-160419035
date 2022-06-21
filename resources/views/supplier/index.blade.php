@@ -31,11 +31,15 @@
         <td ID="td_address_{{$d->id}}">{{$d->address}}</td> 
         <th>
           <a href="{{ url('suppliers/'.$d->id.'/edit')}}" class="btn btn-warning" >Edit</a>
+
+          @can('delete-permission')
           <form method="POST" action="{{url('suppliers/'.$d->id)}}">
             @csrf
             @method('DELETE')
             <input type="submit" value="Hapus" class="btn btn-danger" onclick="if(!confirm('Apakah Anda yakin menghapus data {{$d->name}}')) return false;">
           </form>
+          @endcan
+          
         </th>
         <th>
           <a href="#modalEdit" data-toggle="modal" class="btn btn-warning" onclick="getEditForm({{$d->id}})">Edit dgn modal</a>

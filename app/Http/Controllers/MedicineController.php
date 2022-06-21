@@ -138,6 +138,7 @@ class MedicineController extends Controller
      */
     public function destroy(Medicine $medicine)
     {
+        $this->authorize('delete-permission');
         $medicine->delete();
         return redirect()->route('medicines.index')->with('status', 'Data berhasil dihapus');
     }
@@ -333,5 +334,26 @@ class MedicineController extends Controller
             else $get_total_data= 0;
         
         return view('report.list_medicines_by_category', compact('id_category', 'namecategory', 'result', 'get_total_data'));
+    }
+
+    public function getEditForm(Request $request)
+    {
+        $id= $request->get('id');
+        $data= Medicine::find($id);
+        return response()->json(array(
+            'status'=>'OK',
+            'msg'=>view('medicine.getEditForm', compact('data'))->render()
+        ), 200);
+    }
+
+    // edit data dengan modal tanpa refresh
+    public function getEditForm2(Request $request)
+    {
+        $id= $request->get('id');
+        $data= Medicine::find($id);
+        return response()->json(array(
+            'status'=>'OK',
+            'msg'=>view('medicine.getEditForm2', compact('data'))->render()
+        ), 200);
     }
 }
